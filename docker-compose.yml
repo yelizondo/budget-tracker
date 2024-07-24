@@ -1,0 +1,20 @@
+services:
+  api:
+    container_name: api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: always
+    volumes:
+      - ./api/:/app
+      - ./api/node_modules:/app/node_modules
+    networks:
+      - internal
+    ports:
+      - "4000:4000"
+    environment:
+      - SERVER_PORT=4000
+
+networks:
+  internal:
+    driver: bridge
