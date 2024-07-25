@@ -1,0 +1,1 @@
+export { AuthController } from './v1/AuthController';

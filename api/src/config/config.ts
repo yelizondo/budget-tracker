@@ -13,6 +13,9 @@ const config = {
         user: process.env.POSTGRES_USER ? process.env.POSTGRES_USER : 'budget',
         password: process.env.POSTGRES_PASSWORD ? process.env.POSTGRES_PASSWORD : 'budget',
         dialect: 'postgres',
+    },
+    jwt: {
+        expiresInSeconds: 3600
     }
 };
 

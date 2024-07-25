@@ -6,7 +6,7 @@ import cors from "cors";
 // import db from './database/models';
 
 import config from './config/config';
-// import { RouterV1 } from './routes';
+import { RouterV1 } from './routes';
 import axios from 'axios';
 
 class Server {
@@ -84,8 +84,8 @@ class Server {
     }
 
     private routes() {
-        // const routerv1 = new RouterV1();
-        // this.app.use('/v1', routerv1.getRouter());
+        const routerv1 = new RouterV1();
+        this.app.use('/v1', routerv1.getRouter());
     }
 
     private startServer() {
