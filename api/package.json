@@ -1,5 +1,5 @@
 {
-    "name": "kindle-quotes",
+    "name": "budget",
     "version": "1.0.0",
     "description": "Web app that pulls quotes from the Amazon API and allows to visualize and share them",
     "scripts": {
@@ -9,20 +9,21 @@
     "author": "yelizondo",
     "license": "MIT",
     "dependencies": {
+        "@prisma/client": "^5.17.0",
         "axios": "^1.7.2",
         "body-parser": "^1.20.2",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",
         "express": "^4.19.2",
         "express-validator": "^7.1.0",
-        "jsonwebtoken": "^9.0.2",
-        "mongoose": "^8.5.1"
+        "jsonwebtoken": "^9.0.2"
     },
     "devDependencies": {
         "@types/cors": "^2.8.17",
         "@types/express": "^4.17.21",
         "@types/jsonwebtoken": "^9.0.6",
         "@types/node": "^20.14.12",
+        "prisma": "^5.17.0",
         "ts-node": "^10.9.2",
         "typescript": "^5.5.4"
     }

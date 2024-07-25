@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import http from "http";
 import cors from "cors";
 
+// import db from './database/models';
+
 import config from './config/config';
 // import { RouterV1 } from './routes';
 import axios from 'axios';
@@ -69,12 +71,27 @@ class Server {
         });
     }
 
+
+    private runDatabase() {
+        // db.sequelize
+        // .sync()
+        // .then(() => {
+        //     console.info(`Database connected`);
+        // })
+        // .catch((error:any) => {
+        //     console.error(error.message);
+        // });
+    }
+
     private routes() {
         // const routerv1 = new RouterV1();
         // this.app.use('/v1', routerv1.getRouter());
     }
 
     private startServer() {
+
+        /** Connect Database */
+        this.runDatabase();
     
         /** Middleware */
         this.middleware();
