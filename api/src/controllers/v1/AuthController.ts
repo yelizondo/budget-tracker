@@ -7,7 +7,7 @@ import { NextFunction, Request, Response } from 'express';
 import { APIResponse, LogicResult } from '../../library/interfaces';
 import { ReturnCodes } from '../../library/enums';
 import { getErrorMessage } from '../../library/utils';
-import { AuthBL } from '../../bussiness/v1';
+import { AuthBL } from '../../business/v1';
 import { UserDTO } from '../../library/DTOs';
 
 export class AuthController {
