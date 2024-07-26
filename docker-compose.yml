@@ -1,6 +1,6 @@
 services:
-  api:
-    container_name: api
+  budget-api:
+    container_name: budget-api
     build:
       context: ./api
       dockerfile: Dockerfile
@@ -27,6 +27,21 @@ services:
       - pg-data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    ports:
+      - 3000:3000
+    container_name: frontend
+    volumes:
+      - ./frontend/:/app/
+    networks:
+      - internal
+    command: >
+      bash -c "cp -rfu /cache/node_modules/. /app/node_modules/  
+      && npm start"
 
 networks:
   internal:

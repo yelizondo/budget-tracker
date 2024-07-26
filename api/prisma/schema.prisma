@@ -18,6 +18,141 @@ model User {
   Email String @unique
   Name String
   Password String
+  Budgets BudgetXUser[]
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model Budget {
+  BudgetId Int @id @default(autoincrement())
+  Name String
+  Users BudgetXUser[]
+  Accounts Account[]
+  AvailableToBudgets AvailableToBudget[]
+  CategoryGroups CategoryGroup[]
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model BudgetXUser {
+  User User @relation(fields: [UserId], references: [UserId])
+  UserId Int
+  Budget Budget @relation(fields: [BudgetId], references: [BudgetId])
+  BudgetId Int
+  AssignedAt DateTime @default(now())
+  AssignedBy String
+
+  @@id([UserId, BudgetId])
+}
+
+model AccountType {
+  AccountTypeId Int @id @default(autoincrement())
+  Name String
+  Accounts Account[]
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model Account {
+  AccountId Int @id @default(autoincrement())
+  AccountType AccountType @relation(fields: [AccountTypeId], references: [AccountTypeId])
+  AccountTypeId Int
+  Budget Budget @relation(fields: [BudgetId], references: [BudgetId])
+  BudgetId Int
+  Name String
+  Balance Decimal @db.Money
+  Transactions Transaction[]
+  IsActive Boolean
+  IsDeleted Boolean
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model AvailableToBudget {
+  AvailableToBudgetId Int @id @default(autoincrement())
+  Budget Budget @relation(fields: [BudgetId], references: [BudgetId])
+  BudgetId Int
+  Amount Decimal @db.Money
+  IsActive Boolean
+}
+
+model CategoryGroup {
+  CategoryGroupId Int @id @default(autoincrement())
+  Budget Budget @relation(fields: [BudgetId], references: [BudgetId])
+  BudgetId Int
+  Name String
+  Categories Category[]
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model Category {
+  CategoryId Int @id @default(autoincrement())
+  CategoryGroup CategoryGroup @relation(fields: [CategoryGroupId], references: [CategoryGroupId])
+  CategoryGroupId Int
+  Subcategories Subcategory[]
+  Name String
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model TargetType {
+  TargetTypeId Int @id @default(autoincrement())
+  Name String
+  Targets Target[]
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model Target {
+  TargetId Int @id @default(autoincrement())
+  TargetType TargetType @relation(fields: [TargetTypeId], references: [TargetTypeId])
+  TargetTypeId Int
+  Subcategories Subcategory[]
+  Amount Decimal @db.Money
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model Subcategory {
+  SubcategoryId Int @id @default(autoincrement())
+  Category Category @relation(fields: [CategoryId], references: [CategoryId])
+  CategoryId Int
+  Target Target @relation(fields: [TargetId], references: [TargetId])
+  TargetId Int
+  Name String
+  Activities Activity[]
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model Activity {
+  ActivityId Int @id @default(autoincrement())
+  Subcategory Subcategory @relation(fields: [SubcategoryId], references: [SubcategoryId])
+  SubcategoryId Int
+  Activity Decimal @db.Money
+  Allocated Decimal @db.Money
+  Month DateTime
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model TransactionType {
+  TransactionTypeId Int @id @default(autoincrement())
+  Name String
+  Transactions Transaction[]
+  CreatedAt DateTime @default(now())
+  UpdatedAt DateTime @updatedAt
+}
+
+model Transaction {
+  TransactionId Int @id @default(autoincrement())
+  TransactionType TransactionType @relation(fields: [TransactionTypeId], references: [TransactionTypeId])
+  TransactionTypeId Int
+  Account Account @relation(fields: [AccountId], references: [AccountId])
+  AccountId Int
+  Amount Decimal @db.Money
+  Description String
   CreatedAt DateTime @default(now())
   UpdatedAt DateTime @updatedAt
 }
