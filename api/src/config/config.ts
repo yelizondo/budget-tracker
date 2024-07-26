@@ -15,7 +15,7 @@ const config = {
         dialect: 'postgres',
     },
     jwt: {
-        expiresInSeconds: 3600
+        expiresInSeconds: process.env.JWT_TOKEN_EXP ? Number(process.env.JWT_TOKEN_EXP): 3600
     }
 };
 

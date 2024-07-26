@@ -4,5 +4,7 @@ export enum ReturnCodes {
     UnexpectedError = -2,
 
     // Auth
-    UserEmailAlreadyExists = -10001
+    UserEmailAlreadyExists = -10001,
+    InvalidUserEmail = -10002,
+    InvalidUserPassword = -10003,
 }

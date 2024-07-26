@@ -19,6 +19,12 @@ export class AuthRouter {
       AuthController.signup.action
     );
 
+    this.router.post(
+      '/login',
+      AuthController.login.validation,
+      AuthController.login.action
+    );
+
     // this.router.get(
     //   '/',
     //   Auth.authorize([PermissionActionsEnum.Read]),

@@ -28,6 +28,8 @@ class CustomError extends Error {
 
     // Auth
     [ReturnCodes.UserEmailAlreadyExists]: 'Email already registered in the system',
+    [ReturnCodes.InvalidUserEmail]: 'Email not found',
+    [ReturnCodes.InvalidUserPassword]: 'Wrong password',
 
   };
   
