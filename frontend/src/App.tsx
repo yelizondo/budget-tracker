@@ -8,6 +8,7 @@ import {
   IncomeReport,
   SpendingReport,
   Login,
+  Signup,
   ProtectedLayout,
   UserManagement,
 } from './pages';
@@ -59,6 +60,7 @@ function App() {
             <AlertPopup />
             <Routes>
               <Route path='/auth/login' element={<Login />} />
+              <Route path='/auth/signup' element={<Signup />} />
               <Route path="/" element={<ProtectedLayout />}>
                 <Route path='/' element={<Navigate replace to='/home'/>}/>
                 <Route path="/accounts" element={<Accounts />} />

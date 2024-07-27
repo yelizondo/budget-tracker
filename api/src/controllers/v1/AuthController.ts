@@ -28,9 +28,6 @@ export class AuthController {
                 in: ['body'],
                 notEmpty: {
                     bail: true
-                },
-                isStrongPassword: {
-                    bail: true
                 }
             }
         }),

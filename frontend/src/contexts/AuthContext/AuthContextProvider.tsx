@@ -4,6 +4,7 @@ import { APIResponseDTO, AuthContextDTO, LocalStorageSessionDTO, UserDTO } from 
 import { AuthService, UserService } from "../../services";
 import { LocalStorageHandler } from "../../library/utils";
 import { useNavigate } from "react-router-dom";
+import { ReturnCodes } from "../../library/enums";
 
 export const AuthContextProvider: React.FC<{ children: ReactNode}> = ({ children }) => {
 
@@ -27,10 +28,25 @@ export const AuthContextProvider: React.FC<{ children: ReactNode}> = ({ children
                 });
             }
             return Promise.reject({
-                message: 'Error inesperado. Contacte Oficinas'
+                message: 'Unexpected Error'
             });
         });
     };
+    //#endregion
+
+    //#region Singup
+    const signup = (newUserData: UserDTO): Promise<any> => {
+        return AuthService.signup(newUserData)
+        .then(result => {
+            if (result?.code === ReturnCodes.Success) {
+                navigate('/auth/login');
+            }
+
+            return Promise.resolve({
+                message: result?.message
+            });
+        });
+    }
     //#endregion
 
     //#region Logout
@@ -59,6 +75,7 @@ export const AuthContextProvider: React.FC<{ children: ReactNode}> = ({ children
     const contextValues: AuthContextDTO = {
         user,
         login,
+        signup,
         logout,
         fetchUser
     };
