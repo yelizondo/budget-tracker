@@ -16,7 +16,7 @@ export const AlertPopupContextProvider: React.FC<{ children: ReactNode}> = ({ ch
         options:Array<ButtonDTO> = []
     ): void => {
         options.unshift({
-            title: 'Cancelar',
+            title: 'CANCEL',
             onClick: () => {},
             style: ButtonStyleEnums.Warn
         });

@@ -14,13 +14,13 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <SpinnerContextProvider>
-        <AuthContextProvider>
-          <AlertPopupContextProvider>
-            <App />
-          </AlertPopupContextProvider>
-        </AuthContextProvider>
-      </SpinnerContextProvider>
+      <AlertPopupContextProvider>
+        <SpinnerContextProvider>
+          <AuthContextProvider>
+              <App />
+          </AuthContextProvider>
+        </SpinnerContextProvider>
+      </AlertPopupContextProvider>
     </BrowserRouter>
   </React.StrictMode>
 );

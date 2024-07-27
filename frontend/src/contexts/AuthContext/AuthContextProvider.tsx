@@ -1,15 +1,18 @@
 import React, { ReactNode, useContext, useState} from "react";
 import { AuthContext } from './AuthContext';
-import { APIResponseDTO, AuthContextDTO, LocalStorageSessionDTO, UserDTO } from "../../library/DTOs";
+import { AlertPopupContextDTO, APIResponseDTO, AuthContextDTO, LocalStorageSessionDTO, UserDTO } from "../../library/DTOs";
 import { AuthService, UserService } from "../../services";
 import { LocalStorageHandler } from "../../library/utils";
 import { useNavigate } from "react-router-dom";
-import { ReturnCodes } from "../../library/enums";
+import { ReturnCodes, ButtonTypeEnums, ButtonStyleEnums } from "../../library/enums";
+import { useAlertPopupContext } from "../AlertPopupContext/AlertPopupContextProvider";
 
 export const AuthContextProvider: React.FC<{ children: ReactNode}> = ({ children }) => {
 
     const [user, setUser] = useState<UserDTO>({});
     const navigate = useNavigate();
+    const context = useAlertPopupContext();
+    const { showAlertPopup } = context as AlertPopupContextDTO;
 
     //#region Login
     const login = (loginData: UserDTO): Promise<any> => {
@@ -39,6 +42,15 @@ export const AuthContextProvider: React.FC<{ children: ReactNode}> = ({ children
         return AuthService.signup(newUserData)
         .then(result => {
             if (result?.code === ReturnCodes.Success) {
+                showAlertPopup('Success', 'Account created successfully', [
+                    {
+                        title: 'LOGIN',
+                        type: ButtonTypeEnums.Button,
+                        style: ButtonStyleEnums.Default,
+                        onClick: () => true
+                    }
+                ]);
+
                 navigate('/auth/login');
             }
 
