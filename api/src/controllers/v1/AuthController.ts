@@ -1,9 +1,6 @@
 import { FieldValidationError, checkSchema, validationResult } from 'express-validator';
 import { ControllerRoute } from "../../library/interfaces/ControllerRoute";
 import { NextFunction, Request, Response } from 'express';
-
-// import { AuthBL } from '../../business/v1';
-// import { UserDTO } from '../../library/DTOs/v1';
 import { APIResponse, LogicResult } from '../../library/interfaces';
 import { ReturnCodes } from '../../library/enums';
 import { getErrorMessage } from '../../library/utils';
