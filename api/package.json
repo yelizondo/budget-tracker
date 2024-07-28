@@ -6,6 +6,9 @@
         "start": "npx nodemon --legacy-watch",
         "build": "tsc"
     },
+    "prisma": {
+        "seed": "ts-node --transpile-only src/library/utils/seed.ts"
+    },
     "author": "yelizondo",
     "license": "MIT",
     "dependencies": {
