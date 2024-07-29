@@ -5,8 +5,8 @@ import { NextFunction, Request, Response } from 'express';
 import { APIResponse, LogicResult } from '../../../../library/interfaces';
 import { ReturnCodes } from '../../../../library/enums';
 import { getErrorMessage } from '../../../../library/utils';
-import { BudgetBL } from '../../../../business/v1';
-import { BudgetDTO } from '../../../../library/DTOs';
+import { BusinessV1 } from '../../../../business/v1';
+import { AccountDTO, BudgetDTO } from '../../../../library/DTOs';
 
 export const createAccount: ControllerRoute = {
         validation: checkSchema({
@@ -14,9 +14,17 @@ export const createAccount: ControllerRoute = {
                 in: ['body'],
                 isString: true
             },
-            UserId: {
+            BudgetId: {
                 in: ['body'],
                 isNumeric: true
+            },
+            AccountTypeId: {
+                in: ['body'],
+                isNumeric: true
+            },
+            Balance: {
+                in: ['body'],
+                isDecimal: true
             },
         }),
 
@@ -40,7 +48,7 @@ export const createAccount: ControllerRoute = {
 
             try {
                 const logicResult:
-                    LogicResult<{ newBudget: BudgetDTO }> = await BudgetBL.createUserBudget({ Name: req.body.Name }, { UserId: req.body.UserId});
+                    LogicResult<AccountDTO> = await BusinessV1.AccountBL.create(req.body);
 
                 if (logicResult.code != ReturnCodes.Success) {
                     const apiResponse: APIResponse = {

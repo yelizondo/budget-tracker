@@ -1,8 +1,8 @@
-import { UserDTO } from "../../library/DTOs";
-import { PermissionActionsEnum, ReturnCodes } from "../../library/enums";
-import { GenerateTokenResult, LogicResult, TokenPayload } from "../../library/interfaces";
-import { generateToken } from "../../library/utils";
-import prisma from "../../library/utils/prisma";
+import { UserDTO } from "../../../library/DTOs";
+import { PermissionActionsEnum, ReturnCodes } from "../../../library/enums";
+import { GenerateTokenResult, LogicResult, TokenPayload } from "../../../library/interfaces";
+import { generateToken } from "../../../library/utils";
+import prisma from "../../../library/utils/prisma";
 import bcrypt from 'bcryptjs';
 
 export class AuthBL {
