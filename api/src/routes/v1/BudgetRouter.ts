@@ -1,6 +1,6 @@
 import express, { Router, Request, Response, RouterOptions } from "express";
 import * as Auth from '../../middleware/auth';
-import { AuthController, BudgetController } from "../../controllers";
+import { ControllersV1 } from "../../controllers";
 import { PermissionActionsEnum } from "../../library/enums";
 
 export class BudgetRouter {
@@ -16,22 +16,22 @@ export class BudgetRouter {
     this.router.post(
       '/createUserBudget',
       Auth.authorize([PermissionActionsEnum.Write]),
-      BudgetController.createUserBudget.validation,
-      BudgetController.createUserBudget.action,
+      ControllersV1.BudgetController.createUserBudget.validation,
+      ControllersV1.BudgetController.createUserBudget.action,
     );
 
     this.router.get(
       '/getUserBudgets',
       Auth.authorize([PermissionActionsEnum.Read]),
-      BudgetController.getUserBudgets.validation,
-      BudgetController.getUserBudgets.action,
+      ControllersV1.BudgetController.getUserBudgets.validation,
+      ControllersV1.BudgetController.getUserBudgets.action,
     );
 
     this.router.put(
       '/',
       Auth.authorize([PermissionActionsEnum.Update]),
-      BudgetController.updateBudget.validation,
-      BudgetController.updateBudget.action,
+      ControllersV1.BudgetController.updateBudget.validation,
+      ControllersV1.BudgetController.updateBudget.action,
     );
 
     this.router.get(

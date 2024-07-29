@@ -1,2 +1,1 @@
-export { AuthController } from './v1/AuthController';
-export { BudgetController } from './v1/BudgetController';
+export { ControllersV1 } from './v1/ControllersV1';

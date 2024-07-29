@@ -1,6 +1,6 @@
 import express, { Router, Request, Response, RouterOptions } from "express";
 import * as Auth from '../../middleware/auth';
-import { AuthController } from "../../controllers";
+import { ControllersV1 } from "../../controllers";
 import { PermissionActionsEnum } from "../../library/enums";
 
 export class AuthRouter {
@@ -15,14 +15,14 @@ export class AuthRouter {
   private initRoutes(): void {
     this.router.post(
       '/signup',
-      AuthController.signup.validation,
-      AuthController.signup.action
+      ControllersV1.AuthController.signup.validation,
+      ControllersV1.AuthController.signup.action,
     );
 
     this.router.post(
       '/login',
-      AuthController.login.validation,
-      AuthController.login.action
+      ControllersV1.AuthController.login.validation,
+      ControllersV1.AuthController.login.action,
     );
 
     // this.router.get(

@@ -31,7 +31,9 @@ export class BudgetBL {
 				}
 			}
 
-		} catch(error:any) { return { code: ReturnCodes.UnexpectedError, data: null } }
+		} catch(error:any) {
+			return { code: ReturnCodes.UnexpectedError, data: null }
+		}
 	}
 
 	static getUserBudgets = async (userDTO: UserDTO): Promise<LogicResult<BudgetDTO[]>> => {

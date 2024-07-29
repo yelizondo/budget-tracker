@@ -62,8 +62,8 @@ model Account {
   Name String
   Balance Decimal @db.Money
   Transactions Transaction[]
-  IsActive Boolean
-  IsDeleted Boolean
+  IsActive Boolean @default(true)
+  IsDeleted Boolean @default(false)
   CreatedAt DateTime @default(now())
   UpdatedAt DateTime @updatedAt
 }
@@ -73,7 +73,7 @@ model AvailableToBudget {
   Budget Budget @relation(fields: [BudgetId], references: [BudgetId])
   BudgetId Int
   Amount Decimal @db.Money
-  IsActive Boolean
+  IsActive Boolean @default(true)
 }
 
 model CategoryGroup {

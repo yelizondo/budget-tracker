@@ -5,6 +5,10 @@
 ```
 docker compose exec budget-api npm install package-name
 ```
+#### Create database migration (development)
+```
+    docker compose exec budget-api npx prisma migrate dev --name init
+```
 ### Frontend
 #### Run npm or npx commands
 ```
