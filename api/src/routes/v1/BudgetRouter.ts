@@ -14,10 +14,24 @@ export class BudgetRouter {
 
   private initRoutes(): void {
     this.router.post(
-      '/create',
+      '/createUserBudget',
       Auth.authorize([PermissionActionsEnum.Write]),
-      BudgetController.createBudget.validation,
-      BudgetController.createBudget.action,
+      BudgetController.createUserBudget.validation,
+      BudgetController.createUserBudget.action,
+    );
+
+    this.router.get(
+      '/getUserBudgets',
+      Auth.authorize([PermissionActionsEnum.Read]),
+      BudgetController.getUserBudgets.validation,
+      BudgetController.getUserBudgets.action,
+    );
+
+    this.router.put(
+      '/',
+      Auth.authorize([PermissionActionsEnum.Update]),
+      BudgetController.updateBudget.validation,
+      BudgetController.updateBudget.action,
     );
 
     this.router.get(

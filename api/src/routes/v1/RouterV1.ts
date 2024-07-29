@@ -1,5 +1,5 @@
 import express, { Router, RouterOptions, Request, Response } from "express";
-import { AuthRouter } from "./";
+import { AuthRouter, BudgetRouter } from "./";
 
 export class RouterV1 {
   private router: Router;
@@ -12,7 +12,7 @@ export class RouterV1 {
 
   private initRoutes(): void {
     this.initAuthRoutes();
-    // this.initUserRoutes();
+    this.initBudgetRoutes();
 
     this.router.use("*", (req: Request, res: Response) => {
       const error = new Error('Route not found on V1');
@@ -30,10 +30,10 @@ export class RouterV1 {
     this.router.use("/auth", authRouter.getRouter());
   }
 
-//   private initUserRoutes(): void {
-//     const userRouter = new UserRouter();
-//     this.router.use("/users", userRouter.getRouter());
-//   }
+  private initBudgetRoutes(): void {
+    const router = new BudgetRouter();
+    this.router.use("/budget", router.getRouter());
+  }
 
   public getRouter(): Router {
     return this.router;

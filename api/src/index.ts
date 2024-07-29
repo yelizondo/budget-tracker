@@ -3,11 +3,8 @@ import bodyParser from "body-parser";
 import http from "http";
 import cors from "cors";
 
-// import db from './database/models';
-
 import config from './config/config';
 import { RouterV1 } from './routes';
-import axios from 'axios';
 
 class Server {
     private app: Express;
@@ -17,6 +14,23 @@ class Server {
         this.app = express();
         this.module = 1;
         this.startServer();
+    }
+
+    private logRequest() {
+        this.app.use((req: Request, res: Response, next: NextFunction) => {
+            console.info(
+                `Incomming - METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}]`
+            );
+
+            res.on("finish", () => {
+                /** Log the res */
+                console.info(
+                `Result - METHOD: [${req.method}] - URL: [${req.url}] - IP: [${req.socket.remoteAddress}] - STATUS: [${res.statusCode}]`
+                );
+            });
+
+            next();
+        });
     }
 
     private middleware() {
@@ -71,28 +85,15 @@ class Server {
         });
     }
 
-
-    private runDatabase() {
-        // db.sequelize
-        // .sync()
-        // .then(() => {
-        //     console.info(`Database connected`);
-        // })
-        // .catch((error:any) => {
-        //     console.error(error.message);
-        // });
-    }
-
     private routes() {
         const routerv1 = new RouterV1();
         this.app.use('/v1', routerv1.getRouter());
     }
 
     private startServer() {
+        /** Log request */
+        this.logRequest();
 
-        /** Connect Database */
-        this.runDatabase();
-    
         /** Middleware */
         this.middleware();
     
