@@ -6,7 +6,7 @@ import { APIResponse, LogicResult } from '../../../../library/interfaces';
 import { ReturnCodes } from '../../../../library/enums';
 import { getErrorMessage } from '../../../../library/utils';
 import { BusinessV1 } from '../../../../business/v1';
-import { AccountDTO, BudgetDTO } from '../../../../library/DTOs';
+import { AccountDTO } from '../../../../library/DTOs';
 
 export const createAccount: ControllerRoute = {
         validation: checkSchema({
