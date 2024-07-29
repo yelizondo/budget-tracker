@@ -5,7 +5,7 @@ import { NextFunction, Request, Response } from 'express';
 import { APIResponse, LogicResult } from '../../../../library/interfaces';
 import { ReturnCodes } from '../../../../library/enums';
 import { getErrorMessage } from '../../../../library/utils';
-import { BudgetBL } from '../../../../business/v1';
+import { BusinessV1 } from '../../../../business/v1';
 import { BudgetDTO } from '../../../../library/DTOs';
 
 export const createAccount: ControllerRoute = {
@@ -40,7 +40,7 @@ export const createAccount: ControllerRoute = {
 
             try {
                 const logicResult:
-                    LogicResult<{ newBudget: BudgetDTO }> = await BudgetBL.createUserBudget({ Name: req.body.Name }, { UserId: req.body.UserId});
+                    LogicResult<{ newBudget: BudgetDTO }> = await BusinessV1.BudgetBL.createUserBudget({ Name: req.body.Name }, { UserId: req.body.UserId});
 
                 if (logicResult.code != ReturnCodes.Success) {
                     const apiResponse: APIResponse = {

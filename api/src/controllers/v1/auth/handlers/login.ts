@@ -4,7 +4,7 @@ import { NextFunction, Request, Response } from 'express';
 import { APIResponse, LogicResult } from '../../../../library/interfaces';
 import { ReturnCodes } from '../../../../library/enums';
 import { getErrorMessage } from '../../../../library/utils';
-import { AuthBL } from '../../../../business/v1';
+import { BusinessV1 } from '../../../../business/v1';
 import { UserDTO } from '../../../../library/DTOs';
 
 export const login: ControllerRoute = {
@@ -44,7 +44,7 @@ export const login: ControllerRoute = {
 
             try {
                 const logicResult:
-                    LogicResult<{ user: UserDTO, token: string, expiresIn: number }> = await AuthBL.login(req.body);
+                    LogicResult<{ user: UserDTO, token: string, expiresIn: number }> = await BusinessV1.AuthBL.login(req.body);
 
                 if (logicResult.code != ReturnCodes.Success) {
                     const apiResponse: APIResponse = {

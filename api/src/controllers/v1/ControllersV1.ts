@@ -1,4 +1,4 @@
-import { AccountController } from "./accounts/AccountController";
+import { AccountController } from "./account/AccountController";
 import { AuthController } from "./auth/AuthController";
 import { BudgetController } from "./budget/BudgetController";
 
