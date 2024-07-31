@@ -7,4 +7,6 @@ export type { APIResponseDTO } from './APIResponseDTO'
 export type { AlertPopupContextDTO } from './AlertPopupContextDTO'
 export type { ButtonDTO } from './ButtonDTO';
 export type { SidebarPageDTO } from './SidebarPageDTO';
-export type{ SpinnerContextDTO } from './SpinnerContextDTO';
+export type { SpinnerContextDTO } from './SpinnerContextDTO';
+export type { BudgetDTO } from './BudgetDTO';
+export type { AccountDTO } from './AccountDTO';

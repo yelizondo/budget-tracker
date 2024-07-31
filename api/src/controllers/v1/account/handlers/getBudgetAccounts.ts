@@ -11,14 +11,14 @@ import { AccountDTO } from '../../../../library/DTOs';
 export const getBudgetAccounts: ControllerRoute = {
         validation: checkSchema({
             BudgetId: {
-                in: ['body'],
-                isNumeric: true
+                in: ['query'],
+                isNumeric: true,
+                toInt: true
             },
         }),
 
         action: async (req: Request, res: Response, next: NextFunction) => {
             const errors = validationResult(req);
-
             if (!errors.isEmpty()) {
                 const validationErrors: FieldValidationError[] = errors.array() as FieldValidationError[];
                 const errorMessage = validationErrors.map(error => `[ ${error.path} : ${error.msg} <${error.value}> ]`).join(', ');
@@ -27,7 +27,7 @@ export const getBudgetAccounts: ControllerRoute = {
 
                 const apiResponse: APIResponse = {
                     code: ReturnCodes.UnexpectedError,
-                    message: 'Unexpected Error',
+                    message: getErrorMessage(ReturnCodes.UnexpectedError),
                     result: errorMessage
                 };
 
@@ -36,7 +36,7 @@ export const getBudgetAccounts: ControllerRoute = {
 
             try {
                 const logicResult:
-                    LogicResult<AccountDTO[]> = await BusinessV1.AccountBL.getBudgetAccounts(req.body);
+                    LogicResult<AccountDTO[]> = await BusinessV1.AccountBL.getBudgetAccounts(req.query);
 
                 if (logicResult.code != ReturnCodes.Success) {
                     const apiResponse: APIResponse = {

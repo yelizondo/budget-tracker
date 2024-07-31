@@ -2,7 +2,6 @@ import { IncomeVsExpenseReport } from "../../pages";
 
 export const SidebarPagesEnums = {
     Home: { code: 1, name: 'Home' },
-    Accounts: { code: 2, name: 'Accounts' },
     Transactions: { code: 3, name: 'Transactions' },
     Reports: { code: 5, name: 'Reports' },
     IncomeReport: { code: 6, name: 'Income' },

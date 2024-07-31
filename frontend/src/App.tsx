@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { 
   Home, 
   Transactions,
-  Accounts,
   IncomeVsExpenseReport,
   IncomeReport,
   SpendingReport,
@@ -63,7 +62,6 @@ function App() {
               <Route path='/auth/signup' element={<Signup />} />
               <Route path="/" element={<ProtectedLayout />}>
                 <Route path='/' element={<Navigate replace to='/home'/>}/>
-                <Route path="/accounts" element={<Accounts />} />
                 <Route path="/transactions" element={<Transactions />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/management/users" element={<UserManagement />} />

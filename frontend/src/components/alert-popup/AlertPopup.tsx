@@ -14,7 +14,7 @@ import { X } from 'lucide-react';
 
 import { useAlertPopupContext } from "../../contexts";
 import { AlertPopupContextDTO, ButtonDTO } from "../../library/DTOs";
-import { Button } from "../";
+import { Button } from "..";
 import { ButtonStyleEnums } from "../../library/enums";
 
 export const AlertPopup: React.FC<{}> = ({}) => {

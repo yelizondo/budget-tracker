@@ -5,13 +5,14 @@ import { ButtonStyleEnums, ButtonTypeEnums } from '../library/enums';
 
 export const Button: React.FC<ButtonDTO> = ({
   title,
+  icon,
   type = ButtonTypeEnums.Button,
   style = ButtonStyleEnums.Default,
   onClick
 }) => {
   const defaultStyle = `
-    inline-block rounded text-xs font-medium uppercase leading-normal
-    transition duration-150 ease-in-out px-6 pb-2 pt-2.5 text-grey-600
+    inline-block rounded-full text-xs font-normal uppercase leading-normal
+    transition duration-150 ease-in-out px-4 pb-1 pt-1 text-grey-600
     mx-3 my-1
   `;
   const styles = {
@@ -27,7 +28,7 @@ export const Button: React.FC<ButtonDTO> = ({
         type={type}
         onClick={onClick}
       >
-        {title}
+        {icon}{title}
       </button>
     </TERipple>
   </>;

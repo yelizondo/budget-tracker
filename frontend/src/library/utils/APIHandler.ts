@@ -7,7 +7,8 @@ export class APIHandler {
     static async request<T>(
         endpoint: string,
         method: AxiosRequestConfig['method'],
-        data?: any
+        data?: any,
+        sendAsParams?: boolean
     ): Promise<T> {
 
         const apiUrl = ConfigHandler.getConfig().API_URL;
@@ -17,12 +18,17 @@ export class APIHandler {
             const requestObject: AxiosRequestConfig = {
                 url: `${apiUrl}/${endpoint}`,
                 method,
-                data: data,
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 }
             };
+
+            if (sendAsParams && method === 'GET') {
+                requestObject.params = data;
+            } else {
+                requestObject.data = data;
+            }
 
             const response = await axios.request<T>(requestObject);
 

@@ -1,7 +1,6 @@
 export { SpendingReport } from './reports/SpendingReport'
 export { IncomeVsExpenseReport } from './reports/IncomeVsExpenseReport'
 export { IncomeReport } from './reports/IncomeReport'
-export { Accounts } from './Accounts'
 export { Login } from './auth/Login'
 export { Signup } from './auth/Signup'
 export { Home } from './Home'
