@@ -21,6 +21,13 @@ export class AccountRouter {
     );
 
     this.router.get(
+      '/budgetAccounts',
+      Auth.authorize([PermissionActionsEnum.Read]),
+      ControllersV1.AccountController.getBudgetAccounts.validation,
+      ControllersV1.AccountController.getBudgetAccounts.action,
+    );
+
+    this.router.get(
       '*',
       (req: Request, res: Response) => {
         const error = new Error('Route does not exist for Account');
